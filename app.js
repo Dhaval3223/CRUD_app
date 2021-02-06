@@ -6,6 +6,13 @@ const submitBtn = document.querySelector(".submit-btn");
 const container = document.querySelector(".crud-container");
 const list = document.querySelector(".crud-list");
 const clearBtn = document.querySelector(".clear-btn");
+const displayDone = document.getElementById("display-done");
+const filterOption = document.querySelector(".filter-todo");
+
+// const all = document.querySelector(".all");
+// const completed = document.querySelector(".complete");
+// const pending = document.querySelector(".pending");
+// const filterTodo = document.querySelector(".filter-todo");
 
 // edit option
 let editElement;
@@ -17,8 +24,14 @@ let editID = "";
 form.addEventListener('submit', addItem);
 // clear items
 clearBtn.addEventListener('click', clearItems);
+// all.addEventListener('click', allItems);
+// completed.addEventListener('click', completeItems);
+// pending.addEventListener('click', pendingItems);
 // load items
 window.addEventListener('DOMContentLoaded', setUpItems);
+filterOption.addEventListener("click", filterItem);
+
+
 
 // *** FUNCTIONS ***
 function addItem (e) {
@@ -71,21 +84,38 @@ function clearItems() {
     container.classList.remove('show-container');
     displayAlert('List Cleared', 'danger');
     setBackToDefult();
-    localStorage.removeItem('list');d
+    localStorage.removeItem('list');
 }
+
+// All
+// function allItems(e) {
+//     let items = getLocalStorage();
+
+// }
+
+// completed
+// function completeItems(e) {
+//     // filterItem(completed);
+// }
+
+// uncompleted
+// function pendingItems(e) {
+//     // filterItem(pending);
+// }
+
 
 // deleteItem
 function deleteItem (e) {
     const element = e.currentTarget.parentElement.parentElement;
     const id = element.dataset.id;
-    list.removeChild(element);
-    if(list.children.length === 0){
-        container.classList.remove('show-container');
-    }
-    displayAlert('Removed', 'danger');
-    setBackToDefult();
-    // removeitemfromlocalstorage
-    removeFromLocalStorage(id);
+        list.removeChild(element);
+        if(list.children.length === 0){
+            container.classList.remove('show-container');
+        }
+        displayAlert('Removed', 'danger');
+        setBackToDefult();
+        // removeitemfromlocalstorage
+        removeFromLocalStorage(id);
 }
 // editItem
 function editItem (e) {
@@ -97,8 +127,41 @@ function editItem (e) {
     editFlag = true;
     editID = element.dataset.id;
     submitBtn.textContent = 'edit';
-
 }
+
+// complete items
+function checkItem(e) {
+    const element = e.currentTarget.parentElement.parentElement;
+    // console.log(element);
+    element.classList.toggle('completed');
+}   
+
+// filter
+function filterItem(e) {
+    const todos = list.childNodes;
+    // console.log(todos);
+    todos.forEach(function(todo) {
+      switch (e.target.value) {
+        case "all":
+          todo.style.display = "flex";
+          break;
+        case "completed":
+          if (todo.classList.contains("completed")) {
+            todo.style.display = "flex";
+          } else {
+            todo.style.display = "none";
+          }
+          break;
+        case "uncompleted":
+          if (!todo.classList.contains("completed")) {
+            todo.style.display = "flex";
+          } else {
+            todo.style.display = "none";
+          }
+      }
+    });
+  }
+
 
 // setback to defult
 function setBackToDefult() {
@@ -112,7 +175,7 @@ function setBackToDefult() {
 function addToLocalStorage (id, value) {
     const crud = {id, value};
     let items = getLocalStorage();
-    console.log(items);
+    // console.log(items);
 
     items.push(crud);
     localStorage.setItem('list', JSON.stringify(items));
@@ -162,17 +225,21 @@ function createListItems(id, value) {
     const attr = document.createAttribute('data-id');
     attr.value = id;
     element.setAttributeNode(attr);
-    element.innerHTML = `<p class="title">${value }</p>
+    element.innerHTML = `<p class="title">${value}</p>
     <div class="btn-container">
+        <button type="button" class="complete-btn"><i class="fa fa-check"></i></button>
         <button type="button" class="edit-btn"><i class="fa fa-edit"></i></button>
         <button type="button" class="delete-btn"><i class="fa fa-trash"></i></button>
     </div>`;
 
     const deleteBtn = element.querySelector('.delete-btn');
     const editBtn = element.querySelector('.edit-btn');
+    const completeCheckBtn = element.querySelector('.complete-btn');
 
     deleteBtn.addEventListener('click', deleteItem);
     editBtn.addEventListener('click', editItem);
+    completeCheckBtn.addEventListener('click', checkItem);
+    // filterTodo.addEventListener('click', filterItem);
 
     // append child
     list.appendChild(element);

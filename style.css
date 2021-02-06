@@ -248,15 +248,24 @@ font-size: 0.7rem;
 margin: 0 0.15rem;
 transition: all 0.3s linear;
 }
-.edit-btn {
+.edit-btn{
 color: #24cffa;
 border: none;
 background: none;
 outline: none;
 }
+
+.complete-btn{
+color: orange;
+border: none;
+background: none;
+outline: none;
+}
+
 .edit-btn:hover {
 color: #2fdbb6;
 }
+
 .delete-btn {
 color: #e66b6b;
 border: none;
@@ -294,3 +303,45 @@ border-radius: 10px;
 box-shadow:  6px 6px 6px #cbced1, 
 -6px -6px 6px #ffffff;
 }
+
+.completed{
+    text-decoration: line-through;
+    opacity: 0.3;
+    color: black;
+}
+
+.select {
+    margin: 1rem;
+    position: relative;
+    overflow: hidden;
+  }
+select {
+    color: #102a42;
+    cursor: pointer;
+    padding: 0.3rem;
+padding-left: 1rem;
+background: none;
+outline: none;
+border: none;
+border-top-left-radius: 25px;
+border-bottom-left-radius: 25px;
+color: #555;
+font-size: 1rem;
+flex: 1 0 auto;
+box-shadow: inset 8px 8px 8px #cbced1, 
+inset -8px -8px 8px #ffffff;
+border-top-right-radius: 25px;
+border-bottom-right-radius: 25px;
+font-size: 0.85rem;
+
+  }
+  /* Arrow */
+  .select::after {
+    content: "\25BC";
+    position: absolute;
+    top: 2.5px;
+    right: 4px;
+    background:;
+    cursor: pointer; 
+    pointer-events: none;
+  }

@@ -19,12 +19,39 @@
             <div class="form-control">
                 <input type="text" id="crud" placeholder="your wish list">
                 <button type="submit" class="submit-btn"> Add </button>
+                <div class="select">
+                    <select name="todos" class="filter-todo">
+                      <option value="all">All</option>
+                      <option value="completed">Completed</option>
+                      <option value="uncompleted">Pending</option>
+                    </select>
+                  </div>
             </div>
         </form>
         <!-- list -->
         <div class="crud-container">
             <div class="crud-list"></div>
+            <!-- <div class="completed">
+                <h2 class="title-done">
+                  completed tasks <i class="far fa-check-circle"></i>
+                </h2>
+                <ul id="display-done"></ul>
+              </div> -->
             <button class="clear-btn">Clear All</button>
+            <!-- <div class="btns">
+
+                <button class="all">All</button>
+                <button class="complete">Completed</button>
+                <button class="pending">Pending</button>
+            </div> -->
+            <!-- <div class="select">
+                <input type="radio" class="filter-todo" name="todos" value="All">
+                <label for="all">All</label><br>
+                <input type="radio" class="filter-todo" name="todos" value="completed">
+                <label for="completed">completed</label><br>
+                <input type="radio" class="filter-todo" name="todos" value="uncompleted">
+                <label for="uncompleted">uncompleted</label>
+            </div> -->
         </div>
     </section>
     <!-- js -->
