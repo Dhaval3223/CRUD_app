@@ -9,6 +9,14 @@
         rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"
     />
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/8.2.7/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.7/firebase-firestore.js"></script>
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+    <script src="https://www.gstatic.com/firebasejs/8.2.7/firebase-analytics.js"></script>
+
 </head>
 <body>
     <section class="section-center">
@@ -31,30 +39,31 @@
         <!-- list -->
         <div class="crud-container">
             <div class="crud-list"></div>
-            <!-- <div class="completed">
-                <h2 class="title-done">
-                  completed tasks <i class="far fa-check-circle"></i>
-                </h2>
-                <ul id="display-done"></ul>
-              </div> -->
             <button class="clear-btn">Clear All</button>
-            <!-- <div class="btns">
-
-                <button class="all">All</button>
-                <button class="complete">Completed</button>
-                <button class="pending">Pending</button>
-            </div> -->
-            <!-- <div class="select">
-                <input type="radio" class="filter-todo" name="todos" value="All">
-                <label for="all">All</label><br>
-                <input type="radio" class="filter-todo" name="todos" value="completed">
-                <label for="completed">completed</label><br>
-                <input type="radio" class="filter-todo" name="todos" value="uncompleted">
-                <label for="uncompleted">uncompleted</label>
-            </div> -->
         </div>
     </section>
     <!-- js -->
+    <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
+
+<script>
+  // Your web app's Firebase configuration
+  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+  var firebaseConfig = {
+    apiKey: "AIzaSyAv6eYXbO5FbkJX966LPbnuw6iYvipJ_-Q",
+    authDomain: "todo-app-107ff.firebaseapp.com",
+    projectId: "todo-app-107ff",
+    storageBucket: "todo-app-107ff.appspot.com",
+    messagingSenderId: "230147184083",
+    appId: "1:230147184083:web:8e9476dfd0c9b6e9aa0b26",
+    measurementId: "G-PWW17PZYR5"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+  firebase.analytics();
+  const db = firebase.firestore();
+  db.settings({timestampsInSnapshots: true});
+</script>
+    <!-- <script src="/path/to/js.cookie.js"></script> -->
     <script src="app.js"></script>
 </body>
 </html>

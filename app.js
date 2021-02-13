@@ -9,11 +9,6 @@ const clearBtn = document.querySelector(".clear-btn");
 const displayDone = document.getElementById("display-done");
 const filterOption = document.querySelector(".filter-todo");
 
-// const all = document.querySelector(".all");
-// const completed = document.querySelector(".complete");
-// const pending = document.querySelector(".pending");
-// const filterTodo = document.querySelector(".filter-todo");
-
 // edit option
 let editElement;
 let editFlag = false;
@@ -24,13 +19,10 @@ let editID = "";
 form.addEventListener('submit', addItem);
 // clear items
 clearBtn.addEventListener('click', clearItems);
-// all.addEventListener('click', allItems);
-// completed.addEventListener('click', completeItems);
-// pending.addEventListener('click', pendingItems);
 // load items
 window.addEventListener('DOMContentLoaded', setUpItems);
+// filter items 
 filterOption.addEventListener("click", filterItem);
-
 
 
 // *** FUNCTIONS ***
@@ -39,13 +31,18 @@ function addItem (e) {
     const value = crud.value;
     const id = new Date().getTime().toString();
     if(value && !editFlag){
+
         createListItems(id, value);
+
         // display alert
         displayAlert('Added successfully', 'success');
+        
         // show container
         container.classList.add('show-container');
+
         // add to localstorage
         addToLocalStorage(id, value);
+
         // set to defult
         setBackToDefult();
     }
@@ -84,25 +81,13 @@ function clearItems() {
     container.classList.remove('show-container');
     displayAlert('List Cleared', 'danger');
     setBackToDefult();
-    localStorage.removeItem('list');
+    db.collection("list").get().then((snapshot) => {
+        snapshot.docs.forEach(doc => {
+                db.collection('list').doc(doc.id).delete();
+        });
+    });
+    // localStorage.removeItem('list');
 }
-
-// All
-// function allItems(e) {
-//     let items = getLocalStorage();
-
-// }
-
-// completed
-// function completeItems(e) {
-//     // filterItem(completed);
-// }
-
-// uncompleted
-// function pendingItems(e) {
-//     // filterItem(pending);
-// }
-
 
 // deleteItem
 function deleteItem (e) {
@@ -171,50 +156,28 @@ function setBackToDefult() {
     submitBtn.textContent = 'Add';
 }
 
-// LOCAL STORaGe
-function addToLocalStorage (id, value) {
-    const crud = {id, value};
-    let items = getLocalStorage();
-    // console.log(items);
-
-    items.push(crud);
-    localStorage.setItem('list', JSON.stringify(items));
-}
-
-function removeFromLocalStorage (id) {
-    let items = getLocalStorage();
-
-    items = items.filter(function (item) {
-        if(item.id !== id) {
-            return item;
-        }
-    });
-    localStorage.setItem('list', JSON.stringify(items));
-}
-function editLocalStorage (id, value) {
-    let items = getLocalStorage();
-    items = items.map(function (item) {
-        if(item.id === id) {
-            item.value = value;
-        }
-        return item;
-    });
-    localStorage.setItem('list', JSON.stringify(items));
-}
-
-function getLocalStorage() {
-    return localStorage.getItem('list') ? JSON.parse(localStorage.getItem('list')) : [];
-}
 
 //  **** SETUP ITEMS ****
-function setUpItems() {
-    let items = getLocalStorage();
-    if(items.length > 0) {
-        items.forEach(function(item) {
-            createListItems(item.id, item.value);
-        })
+function setUpItems(item) {
+    // let items = getLocalStorage();
+    // let items = Cookies.get();
+    // if(items.length > 0) {
+    //     items.forEach(function(item) {
+    //         createListItems(item.id, item.value);
+    //     })
+    //     container.classList.add('show-container');
+    // }
+    db.collection("list").get().then((snapshot) => {
+        snapshot.docs.forEach(doc => {
+            createListItems(doc.data().id , doc.data().value);
+        });
         container.classList.add('show-container');
-    }
+    });
+    // container.classList.add('show-container');
+    // if(item){
+    //     createListItems(item.id, item.value);
+    //     container.classList.add('show-container');
+    // }
 }
 
 function createListItems(id, value) {
@@ -244,3 +207,106 @@ function createListItems(id, value) {
     // append child
     list.appendChild(element);
 }
+
+
+
+
+// LOCAL STORAGE
+function addToLocalStorage (id, value) {
+    // const crud = {id, value};
+    // let items = getLocalStorage();
+    // console.log(crud);
+    // console.log(items);
+    // items.push(crud);
+    // console.log(items); 
+    // localStorage.setItem('list', JSON.stringify(items));
+    // browser.cookies.set('list', items);
+    // document.cookie = `'list' = ${items}`;
+    // console.log(cookie);
+    // Cookies.set(id, value);
+    db.collection('list').add({
+        id, value
+    });
+}
+
+function removeFromLocalStorage (id) {
+    // let items = getLocalStorage();
+    // items = items.filter(function (item) {
+    //     if(item.id !== id) {
+    //         return item;
+    //     }
+    // });
+    // document.cookie = `'list' = ${items}`;
+    // localStorage.setItem('list', JSON.stringify(items));
+    // document.cookie = `${id} = ' '; expires=Thu, 01 jan 1970 00:00:01 GMT`;
+    // Cookies.set('list', items);
+    // Cookies.remove(id);
+    db.collection("list").get().then((snapshot) => {
+        snapshot.docs.forEach(doc => {
+            if(doc.data().id === id) {
+                db.collection('list').doc(doc.id).delete();
+            };
+        });
+    });
+
+    // db.collection('list').doc(id).delete();
+}
+
+function editLocalStorage (id, value) {
+    // let items = getLocalStorage();
+    // items = items.map(function (item) {
+    //     if(item.id === id) {
+    //         item.value = value;
+    //     }
+    //     return item;
+    // });
+    // document.cookie = `'list' = ${items}`;
+    // Cookies.remove(id)
+    // Cookies.set(id, value);
+    // localStorage.setItem('list', JSON.stringify(items));
+    // document.cookie = `list = items`;
+    db.collection("list").get().then((snapshot) => {
+        snapshot.docs.forEach(doc => {
+            if(doc.data().id === id) {
+                db.collection('list').doc(doc.id).update({
+                    value
+                });
+            };
+        });
+    });
+}
+
+function getLocalStorage() {
+//     return localStorage.getItem('id') ? JSON.parse(localStorage.getItem('list')) : [];
+//     if(!document.cookie){
+//         return [];
+//     }else {
+//         let cookieArray = document.cookie.split(";");
+//         cookieArray.
+//         forEach(function(cookie){
+//             cookie = cookie.split(",")
+//         })
+//         return cookieArray;
+//     }
+//     var pairs = document.cookie.split(";");
+//     console.log(pairs);
+
+//     for (var i=0; i<pairs.length; i++){
+//     var pair = pairs[i].split("=");
+//         console.log(pair); 
+//         let cookie = {id: pair[0], value: pair[1]};
+//         console.log(cookie);
+// }
+// return document.cookie.split(";").reduce( (ac, cv, i) => Object.assign (ac, {id: cv.split('=')[0], value: cv.split('=')[1]}), []);
+//     return Cookies.get('id') ? Cookies.get('list') : [];
+    let items = [];
+    db.collection("list").get().then((snapshot) => {
+        snapshot.docs.forEach(doc => {
+            items.push(doc.data());
+        });
+    });
+    return items;
+};
+
+
+
