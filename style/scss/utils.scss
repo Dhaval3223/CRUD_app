@@ -1,0 +1,21 @@
+.alert {
+	margin-bottom: 1rem;
+	height: 1.25rem;
+	display: grid;
+	align-items: center;
+	text-align: center;
+	font-size: 0.9rem;
+	border-radius: 0.25rem;
+	letter-spacing: 0.25rem;
+	text-transform: capitalize;
+&-danger {
+	color: #b99fa4;
+	background: #d9cbce;
+	box-shadow: 6px 6px 6px #cbced1, -6px -6px 6px #ffffff;
+}
+&-success {
+	color: #fff;
+	background: #24cfaa;
+	box-shadow: 6px 6px 6px #cbced1, -6px -6px 6px #ffffff;
+}
+}

@@ -1,0 +1,98 @@
+[debug] [2021-02-13T13:07:59.010Z] ----------------------------------------------------------------------
+[debug] [2021-02-13T13:07:59.012Z] Command:       /usr/local/bin/node /usr/local/bin/firebase init
+[debug] [2021-02-13T13:07:59.012Z] CLI Version:   9.3.0
+[debug] [2021-02-13T13:07:59.012Z] Platform:      darwin
+[debug] [2021-02-13T13:07:59.012Z] Node Version:  v12.18.2
+[debug] [2021-02-13T13:07:59.014Z] Time:          Sat Feb 13 2021 18:37:59 GMT+0530 (India Standard Time)
+[debug] [2021-02-13T13:07:59.014Z] ----------------------------------------------------------------------
+[debug] [2021-02-13T13:07:59.014Z] 
+[debug] [2021-02-13T13:07:59.019Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2021-02-13T13:07:59.019Z] > authorizing via signed-in user
+[info] 
+     ######## #### ########  ######## ########     ###     ######  ########
+     ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##
+     ######    ##  ########  ######   ########  #########  ######  ######
+     ##        ##  ##    ##  ##       ##     ## ##     ##       ## ##
+     ##       #### ##     ## ######## ########  ##     ##  ######  ########
+
+You're about to initialize a Firebase project in this directory:
+
+  /Users/dhavalmulashiya/Desktop/project 4 
+
+[info] 
+=== Project Setup
+[info] 
+[info] First, let's associate this project directory with a Firebase project.
+[info] You can create multiple project aliases by running firebase use --add, 
+[info] but for now we'll just set up a default project.
+[info] 
+[debug] [2021-02-13T13:08:16.051Z] > refreshing access token with scopes: []
+[debug] [2021-02-13T13:08:16.052Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+ <request body omitted>
+[debug] [2021-02-13T13:08:16.795Z] <<< HTTP RESPONSE 200 {"expires":"Mon, 01 Jan 1990 00:00:00 GMT","cache-control":"no-cache, no-store, max-age=0, must-revalidate","date":"Sat, 13 Feb 2021 13:08:16 GMT","pragma":"no-cache","content-type":"application/json; charset=utf-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","server":"scaffolding on HTTPServer2","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2021-02-13T13:08:16.821Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects pageSize=100
+[debug] [2021-02-13T13:08:18.257Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects 200
+[debug] [2021-02-13T13:08:18.257Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects [omitted]
+[info] i  Using project todo-app-107ff (TODO app) 
+[info] 
+=== Firestore Setup
+[debug] [2021-02-13T13:08:19.348Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
+[debug] [2021-02-13T13:08:19.348Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+ <request body omitted>
+[debug] [2021-02-13T13:08:20.322Z] <<< HTTP RESPONSE 200 {"expires":"Mon, 01 Jan 1990 00:00:00 GMT","pragma":"no-cache","date":"Sat, 13 Feb 2021 13:08:20 GMT","cache-control":"no-cache, no-store, max-age=0, must-revalidate","content-type":"application/json; charset=utf-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","server":"scaffolding on HTTPServer2","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2021-02-13T13:08:20.337Z] >>> HTTP REQUEST GET https://serviceusage.googleapis.com/v1/projects/todo-app-107ff/services/firestore.googleapis.com  
+ 
+[debug] [2021-02-13T13:08:22.904Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Sat, 13 Feb 2021 13:08:22 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2021-02-13T13:08:22.905Z] >>> HTTP REQUEST GET https://appengine.googleapis.com/v1/apps/todo-app-107ff  
+ 
+[debug] [2021-02-13T13:08:24.445Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Sat, 13 Feb 2021 13:08:24 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2021-02-13T13:08:24.446Z] database_type: CLOUD_FIRESTORE
+[debug] [2021-02-13T13:08:24.446Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2021-02-13T13:08:24.447Z] > authorizing via signed-in user
+[debug] [2021-02-13T13:08:24.448Z] [iam] checking project todo-app-107ff for permissions ["firebase.projects.get"]
+[debug] [2021-02-13T13:08:24.449Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/todo-app-107ff:testIamPermissions  
+ {"permissions":["firebase.projects.get"]}
+[debug] [2021-02-13T13:08:27.151Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Sat, 13 Feb 2021 13:08:26 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","server-timing":"gfet4t7; dur=1504","alt-svc":"h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[info] 
+[info] Firestore Security Rules allow you to define how and when to allow
+[info] requests. You can keep these rules in your project directory
+[info] and publish them with firebase deploy.
+[info] 
+[debug] [2021-02-13T13:08:35.629Z] >>> HTTP REQUEST GET https://firebaserules.googleapis.com/v1/projects/todo-app-107ff/releases?pageSize=10&pageToken=  
+ 
+[debug] [2021-02-13T13:08:37.461Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Sat, 13 Feb 2021 13:08:37 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2021-02-13T13:08:37.462Z] Found ruleset: projects/todo-app-107ff/rulesets/c93faa80-1e03-44bb-a4a4-963fae453452
+[debug] [2021-02-13T13:08:37.462Z] >>> HTTP REQUEST GET https://firebaserules.googleapis.com/v1/projects/todo-app-107ff/rulesets/c93faa80-1e03-44bb-a4a4-963fae453452  
+ 
+[debug] [2021-02-13T13:08:39.213Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Sat, 13 Feb 2021 13:08:39 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[info] 
+[info] Firestore indexes allow you to perform complex queries while
+[info] maintaining performance that scales with the size of the result
+[info] set. You can keep index definitions in your project directory
+[info] and publish them with firebase deploy.
+[info] 
+[debug] [2021-02-13T13:08:44.862Z] >>> HTTP REQUEST GET https://firestore.googleapis.com/v1/projects/todo-app-107ff/databases/(default)/collectionGroups/-/indexes  
+ 
+[debug] [2021-02-13T13:08:44.863Z] >>> HTTP REQUEST GET https://firestore.googleapis.com/v1/projects/todo-app-107ff/databases/(default)/collectionGroups/-/fields?filter=indexConfig.usesAncestorConfig=false  
+ 
+[debug] [2021-02-13T13:08:46.141Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Sat, 13 Feb 2021 13:08:45 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2021-02-13T13:08:46.143Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Sat, 13 Feb 2021 13:08:45 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[info] 
+=== Hosting Setup
+[info] 
+[info] Your public directory is the folder (relative to your project directory) that
+[info] will contain Hosting assets to be uploaded with firebase deploy. If you
+[info] have a build process for your assets, use your build's output directory.
+[info] 
+[debug] [2021-02-13T13:08:59.493Z] >>> [apiv2][query] GET https://www.gstatic.com/firebasejs/releases.json [none]
+[debug] [2021-02-13T13:09:00.388Z] <<< [apiv2][status] GET https://www.gstatic.com/firebasejs/releases.json 200
+[debug] [2021-02-13T13:09:00.388Z] <<< [apiv2][body] GET https://www.gstatic.com/firebasejs/releases.json {"current":{"version":"8.2.7","browserURL":"https://www.gstatic.com/firebasejs/8.2.7/firebase.js","packageURL":"https://www.gstatic.com/firebasejs/8.2.7/firebase.tgz"},"live":{"version":"8.2","browserURL":"https://www.gstatic.com/firebasejs/live/8.2/firebase.js","packageURL":"https://www.gstatic.com/firebasejs/live/8.2/firebase.tgz"},"components":{"analytics":"https://www.gstatic.com/firebasejs/8.2.7/firebase-analytics.js","app":"https://www.gstatic.com/firebasejs/8.2.7/firebase-app.js","auth":"https://www.gstatic.com/firebasejs/8.2.7/firebase-auth.js","database":"https://www.gstatic.com/firebasejs/8.2.7/firebase-database.js","firestore":"https://www.gstatic.com/firebasejs/8.2.7/firebase-firestore.js","functions":"https://www.gstatic.com/firebasejs/8.2.7/firebase-functions.js","installations":"https://www.gstatic.com/firebasejs/8.2.7/firebase-installations.js","messaging":"https://www.gstatic.com/firebasejs/8.2.7/firebase-messaging.js","storage":"https://www.gstatic.com/firebasejs/8.2.7/firebase-storage.js","performance":"https://www.gstatic.com/firebasejs/8.2.7/firebase-performance.js","remote-config":"https://www.gstatic.com/firebasejs/8.2.7/firebase-remote-config.js","firestore.memory":"https://www.gstatic.com/firebasejs/8.2.7/firebase-firestore.memory.js"}}
+[debug] [2021-02-13T13:09:02.761Z] Error: ENOTDIR: not a directory, open '/Users/dhavalmulashiya/Desktop/project 4 /n/index.html'
+    at Object.openSync (fs.js:458:3)
+    at Object.writeFileSync (fs.js:1355:35)
+    at Object.createFileSync (/usr/local/lib/node_modules/firebase-tools/node_modules/fs-extra/lib/ensure/file.js:34:6)
+    at Config.writeProjectFile (/usr/local/lib/node_modules/firebase-tools/lib/config.js:155:8)
+    at /usr/local/lib/node_modules/firebase-tools/lib/config.js:174:18
+    at processTicksAndRejections (internal/process/task_queues.js:97:5)
+[error] 
+[error] Error: An unexpected error has occurred.

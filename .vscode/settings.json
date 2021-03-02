@@ -1,3 +1,4 @@
 {
-    "eslint.nodeEnv": ""
+    "eslint.nodeEnv": "",
+    "liveServer.settings.port": 5501
 }

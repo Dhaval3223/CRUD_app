@@ -4,11 +4,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ToDO App</title>
-    <link rel="stylesheet" href="style.css" />
     <link
-        rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"
     />
+    <!-- <link rel="stylesheet" href="./style//css/copy.css"> -->
+    <!-- <link rel="stylesheet" href="./style/css/form.css">
+    <link rel="stylesheet" href="./style/css/header.css">
+    <link rel="stylesheet" href="./style/css/modal.css">
+    <link rel="stylesheet" href="./style/css/notes.css">
+    <link rel="stylesheet" href="./style/css/placeholder.css">
+    <link rel="stylesheet" href="./style/css/responsive.css">
+    <link rel="stylesheet" href="./style/css/sidebar.css">
+    <link rel="stylesheet" href="./style/css/style.css">
+    <link rel="stylesheet" href="./style/css/utils.css">
+    <link rel="stylesheet" href="./style/css/view.css"> -->
+    <link rel="stylesheet" href="./style/css/style1.css" />
+
     <!-- The core Firebase JS SDK is always required and must be listed first -->
     <script src="https://www.gstatic.com/firebasejs/8.2.7/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.2.7/firebase-firestore.js"></script>
@@ -16,36 +28,85 @@
     <!-- TODO: Add SDKs for Firebase products that you want to use
      https://firebase.google.com/docs/web/setup#available-libraries -->
     <script src="https://www.gstatic.com/firebasejs/8.2.7/firebase-analytics.js"></script>
-
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 </head>
 <body>
+  <!-- modal -->
+    <div class="modal">
+        <div class="modal-content modal__content">
+          <textarea  class="modal-text modal__text" placeholder="Add New Task" rows="7" cols="33"></textarea>
+          <button type="submit" class="modal-close-button modal__btn-close"> Close</button>
+        </div>
+      </div>
+      <!-- nav -->
+      <nav class="nav">
+        <ul class="nav__ul nav__items">
+          <div class="items">
+            <li>
+            <div class="select">
+              <select name="todos" class="filter-todo select__filter">
+                <option value="all">All Tasks</option>
+                <option value="completed">Completed</option>
+                <option value="uncompleted">Uncompleted</option>
+              </select>
+          </div>
+          </li>
+        <li class="search-icon search">
+          <label  class="icon search__label">
+            <span class="fas fa-search search__icon"></span>
+          </label>
+          <input type="search" placeholder="Search..." autocomplete="off" id='searchtextbox' class="search__input">
+        </li>
+        </div>  
+      </ul>
+      </nav>
+      <!-- sidebar -->
+      <sidebar class="navbar sidebar">
+        <ul class="navbar-nav sidebar__items">
+          <li class="nav-items sidebar__item">
+            <a href="./index.html" class="nav-link sidebar__link" id="home">
+              <i class="fas fa-home sidebar-icon sidebar__icon"></i>
+              <span class='link-text sidebar__text' >Home</span>
+            </a>
+          </li>
+          <li class="nav-items sidebar__item">
+            <a href="./trash.html" class="nav-link sidebar__link" id="trash">
+              <i class="fas fa-trash sidebar-icon sidebar__icon"></i>
+              <span class='link-text sidebar__text' >Trash</span>
+            </a>
+          </li>
+        </ul>
+      </sidebar>
+      <!-- main section -->
     <section class="section-center">
-        <!-- form -->
-        <form class="crud-form">
+        <form class="crud-form form" id="form" autocomplete="off">
             <p class="alert"></p>
-            <h3>CRUD APP</h3>
-            <div class="form-control">
-                <input type="text" id="crud" placeholder="your wish list">
-                <button type="submit" class="submit-btn"> Add </button>
-                <div class="select">
-                    <select name="todos" class="filter-todo">
-                      <option value="all">All</option>
-                      <option value="completed">Completed</option>
-                      <option value="uncompleted">Pending</option>
-                    </select>
-                  </div>
+            <div class="form-control form__control">
+                <textarea id="crud" class="form__input" placeholder="Add New Task"></textarea>
+                <button type="submit" class="submit-btn form__btn-submit"> Add </button>
             </div>
         </form>
-        <!-- list -->
-        <div class="crud-container">
-            <div class="crud-list"></div>
-            <button class="clear-btn">Clear All</button>
-        </div>
+        <!--  -->
     </section>
-    <!-- js -->
+        <!-- list -->
+        <div id="placeholder" class="placeholder">
+          <i class="fa fa-lightbulb placeholder__icon" id='placeholder-logo' ></i>
+          <p id="placeholder-text" class="placeholder__text">Notes you add appear here</p>
+        </div>
+        <div class="crud-container notes">
+            <div class="crud-list notes__container" id='notes'></div>
+            <div id="trash"></div>
+            <button class="clear-btn notes__btn-clear">Clear All</button>
+        </div>
+        <!-- js -->
     <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
 
 <script>
+  // $('nav ul li.btn span').click(function(){
+  //       $('nav ul div.items').toggleClass("show");
+  //       $('nav ul li.btn span').toggleClass("show");
+  //     });
   // Your web app's Firebase configuration
   // For Firebase JS SDK v7.20.0 and later, measurementId is optional
   var firebaseConfig = {
@@ -63,7 +124,7 @@
   const db = firebase.firestore();
   db.settings({timestampsInSnapshots: true});
 </script>
-    <!-- <script src="/path/to/js.cookie.js"></script> -->
-    <script src="app.js"></script>
+  <script src="app.js"></script>
+  <script src="trash.js"></script>
 </body>
 </html>

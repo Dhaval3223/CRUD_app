@@ -1,0 +1,43 @@
+.notes{
+	margin-top: 2rem;
+	transition: all 0.3s linear;
+	visibility: hidden;
+
+
+&__container {
+	display: flex;
+	flex-wrap: wrap;
+	max-width: 90vw;
+	margin: 0 auto;
+	justify-content: center;
+}
+
+&__btn-clear {
+	text-transform: capitalize;
+	width: 10rem;
+	height: 1.5rem;
+	display: grid;
+	align-items: center;
+	background: transparent;
+	border-color: transparent;
+	color: #000;
+	margin: 0 auto;
+	font-size: 0.85rem;
+	letter-spacing: 0.25rem;
+	cursor: pointer;
+	transition: all 0.3s linear;
+	margin-top: 1.25rem;
+	border-radius: 10px;
+	background: none;
+	outline: none;
+	border: 1px solid #555;
+}
+&__btn-clear:hover {
+	color: #555;
+	border-radius: 10px;
+	transform: scale(1.1);
+}
+}
+.show-container{
+	visibility: visible;
+}

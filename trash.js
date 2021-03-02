@@ -7,7 +7,7 @@ const container = document.querySelector(".crud-container");
 const list = document.querySelector(".crud-list");
 const clearBtn = document.querySelector(".clear-btn");
 const displayDone = document.getElementById("display-done");
-const filterOption = document.querySelector(".filter-todo");
+// const filterOption = document.querySelector(".filter-todo");
 const title = document.querySelector(".title");
 const notes = document.querySelector("#notes");
 const modal = document.querySelector(".modal");
@@ -15,8 +15,9 @@ const modalTitle = document.querySelector(".modal-title");
 const modalText = document.querySelector(".modal-text");
 const modalCloseButton = document.querySelector(".modal-close-button");
 const colorTooltip = document.querySelector("#color-tooltip");
+const showContent = document.querySelector(".container");
 const placeholder = document.querySelector("#placeholder");
-const trash = document.querySelector("#trash");
+
 
 // edit option
 let editElement;
@@ -25,26 +26,20 @@ let editID = "";
 
 // *****  EVENT LISTNERS  *****
 // submit
-form.addEventListener('submit', addItem);
+// form.addEventListener('submit', addItem);
 // clear items
 clearBtn.addEventListener('click', clearItems);
 // load items
 window.addEventListener('DOMContentLoaded', setUpItems);
 // filter items 
-filterOption.addEventListener("click", filterItem);
+// filterOption.addEventListener("click", filterItem);
 // modalCloseButton 
-modalCloseButton.addEventListener("click", addItem);
+modalCloseButton.addEventListener("click", addItem)
 
-$("textarea").keypress(function(e){
-    // Enter was pressed without shift key
-    if (!e.shiftKey && e.key == 'Enter')
-    {
-        // prevent default behavior
-        e.preventDefault();
-    } 
-});
+
 
 // *** FUNCTIONS ***
+
 function addItem (e) {
     e.preventDefault();
     const value = crud.value || modalText.value;
@@ -59,6 +54,7 @@ function addItem (e) {
         container.classList.add('show-container');
         placeholder.style.display = 'none';
 
+
         // add to localstorage
         addToLocalStorage(id, value);
 
@@ -69,7 +65,6 @@ function addItem (e) {
         modal.classList.toggle("open-modal");
         editElement.innerHTML = value;
         displayAlert('value changed', 'success');
-
         // editLocalStorage
         editLocalStorage(editID, value);
         setBackToDefult();
@@ -77,7 +72,6 @@ function addItem (e) {
     else {
         displayAlert('please enter value', 'danger')
     }
-
 }
 
 // diplay alert 
@@ -101,7 +95,6 @@ function clearItems() {
         });
     }
     container.classList.remove('show-container');
-    placeholder.style.display = 'flex';
     displayAlert('List Cleared', 'danger');
     setBackToDefult();
     db.collection("list").get().then((snapshot) => {
@@ -109,11 +102,13 @@ function clearItems() {
                 db.collection('list').doc(doc.id).delete();
         });
     });
-    // localStorage.removeItem('list');
 }
 
 // deleteItem
 function deleteItem (e) {
+    var verify = confirm("Are you sure? You are about to delete this item.");
+
+    if(verify){
         const element = e.currentTarget.parentElement.parentElement;
         const id = element.dataset.id;
             list.removeChild(element);
@@ -121,12 +116,28 @@ function deleteItem (e) {
                 container.classList.remove('show-container');
                 placeholder.style.display = 'flex'
             }
-            displayAlert('Removed', 'danger');
-            setBackToDefult();
+            // displayAlert('Removed', 'danger');
+            // setBackToDefult();
 
             // removeitemfromlocalstorage
             removeFromLocalStorage(id);
+
+    }
 }
+function restoreItem (e) {
+        const element = e.currentTarget.parentElement.parentElement;
+        const id = element.dataset.id;
+            list.removeChild(element);
+            if(list.children.length === 0){
+                container.classList.remove('show-container');
+            }
+            // displayAlert('Restored', 'danger');
+            // setBackToDefult();
+
+            // removeitemfromlocalstorage
+            restoreInItem(id);
+
+    }
 
 // editItem
 function editItem (e) {
@@ -144,6 +155,7 @@ function editItem (e) {
 // complete items
 function checkItem(e) {
     const element = e.currentTarget.parentElement.parentElement;
+    // console.log(element);
     element.classList.toggle('completed');
 }   
 
@@ -175,19 +187,19 @@ function filterItem(e) {
 
 
 // setback to defult
-function setBackToDefult() {
-    modalText.value = '';
-    crud.value = '';
-    editFlag = false;
-    editID = '';
-    // submitBtn.textContent = 'Add';
-}
+// function setBackToDefult() {
+//     modalText.value = '';
+//     crud.value = '';
+//     editFlag = false;
+//     editID = '';
+//     // submitBtn.textContent = 'Add';
+// }
 
 //  **** SETUP ITEMS ****
 function setUpItems(item) {
     db.collection("list").get().then((snapshot) => {
         snapshot.docs.forEach(doc => {
-            if(doc.data().status === "active"){
+            if(doc.data().status === "bin"){
                 createListItems(doc.data().id , doc.data().value);
                 container.classList.add('show-container');
                 placeholder.style.display = 'none';
@@ -207,18 +219,19 @@ function createListItems(id, value) {
     element.innerHTML = `
     <div class="title">${value}</div>
     <div class="btn-container">
-        <button type="button" class="complete-btn tooltip"><i class="fa fa-check"></i><span class="tooltiptext">Mark complete</span></button>
-        <button type="button" class="edit-btn tooltip"><i class="fa fa-edit"></i><span class="tooltiptext">Update</span></button>
         <button type="button" class="delete-btn tooltip"><i class="fa fa-trash"></i><span class="tooltiptext">Delete</span></button>
+        <button type="button" class="restore-btn tooltip"><i class="fas fa-trash-restore"></i><span class="tooltiptext">Restore</span></button>
     </div>`
 
     const deleteBtn = element.querySelector('.delete-btn');
-    const editBtn = element.querySelector('.edit-btn');
-    const completeCheckBtn = element.querySelector('.complete-btn');
+    // const editBtn = element.querySelector('.edit-btn');
+    // const completeCheckBtn = element.querySelector('.complete-btn');
+    const restoreBtn = element.querySelector('.restore-btn');
 
     deleteBtn.addEventListener('click', deleteItem);
-    editBtn.addEventListener('click', editItem);
-    completeCheckBtn.addEventListener('click', checkItem);
+    // editBtn.addEventListener('click', editItem);
+    // completeCheckBtn.addEventListener('click', checkItem);
+    restoreBtn.addEventListener('click', restoreItem);
 
     // append child
     list.appendChild(element);
@@ -236,9 +249,19 @@ function removeFromLocalStorage (id) {
     db.collection("list").get().then((snapshot) => {
         snapshot.docs.forEach(doc => {
             if(doc.data().id === id) {
+                db.collection('list').doc(doc.id).delete();
+                // db.collection('list').doc(doc.id).delete();
+            };
+        });
+    });
+}
+function restoreInItem (id) {
+    db.collection("list").get().then((snapshot) => {
+        snapshot.docs.forEach(doc => {
+            if(doc.data().id === id) {
                 // db.collection('list').doc(doc.id).delete();
                 db.collection('list').doc(doc.id).update({ 
-                    status: 'bin'
+                    status: 'active'
                 })
             };
         });
@@ -267,20 +290,6 @@ function getLocalStorage() {
     return items;
 };
 
-// searchbox
-let searchtextbox = document.getElementById("searchtextbox");
-searchtextbox.addEventListener("input", function(){
-    let list = document.querySelectorAll("article");
-    Array.from(list).forEach(function(item){
-        let searchedtext = item.getElementsByClassName("title")[0].innerText;
-        let searchtextboxval = searchtextbox.value;
-        let re = new RegExp(searchtextboxval, 'gi');
-        if(searchedtext.match(re)){
-            item.style.display="flex";
-        }
-        else{
-            item.style.display="none";
-        }
-    })
-})
+
+
 

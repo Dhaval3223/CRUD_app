@@ -1,0 +1,11 @@
+{
+    "configurations": [
+    
+        {
+            "type": "pwa-chrome",
+            "name": "http://section-center",
+            "request": "launch",
+            "url": "http://section-center"
+        }
+    ]
+}

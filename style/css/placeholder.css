@@ -1,0 +1,18 @@
+.placeholder {
+	margin-top: 10vh !important;
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+}
+#placeholder-logo {
+	margin: 20px;
+	opacity: 0.1;
+	font-size: 5rem;
+}
+.placeholder__text {
+	color: #80868b;
+	cursor: default;
+	font-size: 1.375rem;
+	font-weight: 400;
+	line-height: 1.75rem;
+}
