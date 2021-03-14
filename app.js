@@ -1,4 +1,5 @@
 // select items
+
 const form = document.querySelector(".crud-form");
 const alert = document.querySelector(".alert");
 const crud = document.getElementById("crud");
@@ -14,9 +15,7 @@ const modal = document.querySelector(".modal");
 const modalTitle = document.querySelector(".modal-title");
 const modalText = document.querySelector(".modal-text");
 const modalCloseButton = document.querySelector(".modal-close-button");
-const colorTooltip = document.querySelector("#color-tooltip");
 const placeholder = document.querySelector("#placeholder");
-const trash = document.querySelector("#trash");
 
 // edit option
 let editElement;
@@ -283,4 +282,7 @@ searchtextbox.addEventListener("input", function(){
         }
     })
 })
+
+
+export { addItem, displayAlert, clearItems, deleteItem, editItem, checkItem, filterItem, setBackToDefult, getLocalStorage, editLocalStorage, removeFromLocalStorage, addToLocalStorage };
 

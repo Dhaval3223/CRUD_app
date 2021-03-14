@@ -4,7 +4,7 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
   },
   "repository": {
     "type": "git",
@@ -18,5 +18,18 @@
   "homepage": "https://github.com/Dhaval3223/CRUD_app#readme",
   "dependencies": {
     "js-cookie": "^2.2.1"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.13.8",
+    "@babel/preset-env": "^7.13.9",
+    "autoprefixer": "^10.2.4",
+    "cssnano": "^4.1.10",
+    "gulp": "^4.0.2",
+    "gulp-concat": "^2.6.1",
+    "gulp-postcss": "^9.0.0",
+    "gulp-sourcemaps": "^3.0.0",
+    "gulp-terser": "^2.0.1",
+    "jest": "^26.6.3",
+    "postcss": "^8.2.6"
   }
 }
